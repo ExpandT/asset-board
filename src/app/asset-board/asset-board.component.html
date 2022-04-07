@@ -1,0 +1,45 @@
+<div class="container">
+  <google-map height="700px" width="700px">
+    <map-marker
+      *ngFor="let marker of markers"
+      [position]="marker.position"
+      [label]="marker.label"
+    >
+    </map-marker>
+  </google-map>
+
+  <div class="board-control">
+    <button type="button" class="btn btn-primary" (click)="addAsset()" >Add Asset</button>
+
+
+    <div class="table-scroll">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let asset of assets; index as i" (click)="selectAsset(asset)" [ngClass]="{ 'selected': asset === selectedAsset }" >
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ asset.name }}</td>
+          <td>{{ asset.type }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="editAsset(asset)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="deleteAsset(asset)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
