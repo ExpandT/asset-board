@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <div class="input-group">
+        <input class="form-control field" formControlName="name" placeholder="Name">
+      </div>
+      <select class="form-select field" aria-label="Type" formControlName="type">
+        <option value="" disabled selected>Select something...</option>
+        <option *ngFor="let type of assetTypeEnum | keyvalue" [value]="type.value">{{type.value}}</option>
+      </select>
+      <div class="input-group">
+        <input class="form-control field" placeholder="latitude" formControlName="latitude">
+      </div>
+      <div class="input-group">
+        <input class="form-control field" placeholder="longitude" formControlName="longitude">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="save()" [disabled]="form.invalid">Save</button>
+</div>
